@@ -11,6 +11,10 @@
     <link href="css/ionic.app.css" rel="stylesheet">
 
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    
+    <script src="lib/moment/moment.js"></script>
+
+    <script src="lib/angular-moment/angular-moment.js"></script>
 
     <script src="cordova.js"></script>
 
@@ -29,7 +33,9 @@
               ng-repeat="story in stories">
               <img ng-src="{{story.thumbnail}}" ng-if="story.thumbnail.startsWith('http')">
               <h2 class="story-title">{{story.title}}</h2>
-              <p>{{story.domain}}</p>
+              <p>
+                <span am-time-ago="story.created_utc" am-preprocess="unix"></span> - {{story.domain}}
+              </p>
           </a>
         </div>
       </ion-content>
