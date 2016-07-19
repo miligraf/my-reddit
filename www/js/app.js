@@ -35,6 +35,10 @@ app.controller('RedditCtrl', function($http, $scope) {
     });
   };
 
+  $scope.openLink = function(url) {
+    window.open(url, '_blank');
+  };
+
 });
 
 app.run(function($ionicPlatform) {
@@ -43,6 +47,9 @@ app.run(function($ionicPlatform) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 
       cordova.plugins.Keyboard.disableScroll(true);
+    }
+    if(window.cordova && window.cordova.InAppBrowser) {
+      window.open = cordova.InAppBrowser.open;
     }
     if(window.StatusBar) {
       StatusBar.styleDefault();
